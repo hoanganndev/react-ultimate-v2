@@ -4,7 +4,15 @@ import { deleteUser } from "../../../../services/apiService";
 
 import { toast } from "react-toastify";
 
-const ModalDeleteUser = ({ show, setShow, dataDelete, fetchListUser }) => {
+const ModalDeleteUser = ({
+  show,
+  setShow,
+  dataDelete,
+  fetchListUser,
+  fetchListUserWithPagination,
+  currentPage,
+  setCurrentPage,
+}) => {
   const handleClose = () => setShow(false);
 
   const handleSubmitDeleteUser = async () => {
@@ -13,7 +21,9 @@ const ModalDeleteUser = ({ show, setShow, dataDelete, fetchListUser }) => {
     if (res && res.EC === 0) {
       toast.success(res.EM);
       handleClose();
-      await fetchListUser();
+      //await fetchListUser();
+      setCurrentPage(1); // set bằng 1 để pagination quay về trang đầu tiên sau khi delete
+      await fetchListUserWithPagination(1);
     }
     if (res && res.EC !== 0) {
       toast.error(res.EM);

@@ -13,6 +13,9 @@ const ModalUpdateUser = ({
   fetchListUser,
   dataUpdate,
   resetUpdateData,
+  fetchListUserWithPagination,
+  currentPage,
+  setCurrentPage,
 }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -59,7 +62,9 @@ const ModalUpdateUser = ({
     if (res && res.EC === 0) {
       toast.success(res.EM);
       handleClose();
-      await fetchListUser();
+      //await fetchListUser();
+
+      await fetchListUserWithPagination(currentPage);
     }
     if (res && res.EC !== 0) {
       toast.error(res.EM);

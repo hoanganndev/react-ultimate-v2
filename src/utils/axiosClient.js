@@ -1,4 +1,7 @@
 import axios from "axios";
+import NProgress from "nprogress";
+
+NProgress.configure({ showSpinner: false, trickleSpeed: 100 });
 
 const instance = axios.create({
   baseURL: "http://localhost:8081/",
@@ -6,6 +9,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   function (config) {
+    NProgress.start(); //start loading bar
     return config;
   },
   function (error) {
@@ -15,6 +19,7 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   function (response) {
+    NProgress.done(); //stop loading bar
     return response && response.data ? response.data : response;
   },
   function (error) {
