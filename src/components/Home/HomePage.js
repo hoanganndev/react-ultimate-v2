@@ -1,5 +1,4 @@
 import video from "../../assets/video-homepage.mp4";
-
 const HomePage = () => {
   return (
     <div className="homepage-container">

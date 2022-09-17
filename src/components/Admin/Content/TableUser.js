@@ -1,4 +1,18 @@
-const TableUser = ({ listUsers, handleClickBtnUpdate, handleClickBtnDelete }) => {
+import ReactPaginate from "react-paginate";
+
+const TableUser = ({
+  listUsers,
+  handleClickBtnUpdate,
+  handleClickBtnDelete,
+  fetchListUserWithPagination,
+  pageCount,
+  currentPage,
+  setCurrentPage,
+}) => {
+  const handlePageClick = e => {
+    fetchListUserWithPagination(+e.selected + 1);
+    setCurrentPage(+e.selected + 1);
+  };
   return (
     <div>
       <table className="table table-striped table-hover table-bordered">
@@ -47,6 +61,29 @@ const TableUser = ({ listUsers, handleClickBtnUpdate, handleClickBtnDelete }) =>
           )}
         </tbody>
       </table>
+      <div className="user-pagination">
+        <ReactPaginate
+          nextLabel="next >"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={3}
+          marginPagesDisplayed={2}
+          pageCount={pageCount}
+          previousLabel="< Prev"
+          pageClassName="page-item"
+          pageLinkClassName="page-link"
+          previousClassName="page-item"
+          previousLinkClassName="page-link"
+          nextClassName="page-item"
+          nextLinkClassName="page-link"
+          breakLabel="..."
+          breakClassName="page-item"
+          breakLinkClassName="page-link"
+          containerClassName="pagination"
+          activeClassName="active"
+          renderOnZeroPageCount={null}
+          forcePage={currentPage - 1}
+        />
+      </div>
     </div>
   );
 };
