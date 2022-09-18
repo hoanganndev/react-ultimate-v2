@@ -9,7 +9,12 @@ import ManageUser from "../components/Admin/Content/ManageUser";
 import Login from "../components/Auth/Login";
 import Register from "../components/Auth/Register";
 import Home from "../components/Home/HomePage";
-import User from "../components/User/User";
+import DetailQuiz from "../components/User/DetailQuiz/DetailQuiz";
+import ListQuiz from "../components/User/ListQuiz";
+
+const NotFound = () => {
+  return <div className="container mt-3 alert alert-warning">404 not found</div>;
+};
 
 const Layout = props => {
   return (
@@ -17,14 +22,16 @@ const Layout = props => {
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
-          <Route path="users" element={<User />} />
+          <Route path="users" element={<ListQuiz />} />
         </Route>
         <Route path="admins" element={<Admin />}>
           <Route index element={<DashBoard />} />
           <Route path="manage-users" element={<ManageUser />} />
         </Route>
+        <Route path="quiz/:id" element={<DetailQuiz />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <ToastContainer

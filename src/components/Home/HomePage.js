@@ -1,5 +1,11 @@
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import video from "../../assets/video-homepage.mp4";
+
 const HomePage = () => {
+  const navigate = useNavigate();
+  const { isAuthenticated } = useSelector(state => state.user);
   return (
     <div className="homepage-container">
       <video autoPlay muted loop>
@@ -12,7 +18,11 @@ const HomePage = () => {
           a typeform instead—and make everyone happy.
         </div>
         <div className="content-button">
-          <button>Get started - it's free</button>
+          {isAuthenticated ? (
+            <button onClick={() => navigate("/users")}>Doing quiz now</button>
+          ) : (
+            <button onClick={() => navigate("/login")}>Get started - it's free</button>
+          )}
         </div>
       </div>
     </div>
