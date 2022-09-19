@@ -1,7 +1,7 @@
 import { AiFillDashboard } from "react-icons/ai";
 import { DiAptana } from "react-icons/di";
 import { FaGithub } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RiAdminLine } from "react-icons/ri";
 
 import {
@@ -18,6 +18,7 @@ import sidebarBg from "../../assets/bg2.jpg";
 import "./SideBar.scss";
 
 const SideBar = props => {
+  const navigate = useNavigate();
   const { collapsed, toggled, handleToggleSidebar } = props;
 
   return (
@@ -40,9 +41,11 @@ const SideBar = props => {
               overflow: "hidden",
               textOverflow: "ellipsis",
               whiteSpace: "nowrap",
+              cursor: "pointer",
             }}
+            onClick={() => navigate("/")}
           >
-            <RiAdminLine size={"2em"} /> Admin
+            <RiAdminLine size={"2em"} /> <span>Admin</span>
           </div>
         </SidebarHeader>
 
@@ -59,7 +62,11 @@ const SideBar = props => {
                 Quản lý users
                 <Link to="/admins/manage-users" />
               </MenuItem>
-              <MenuItem>Quản lý bài quiz</MenuItem>
+              <MenuItem>
+                Quản lý bài quiz
+                <Link to="/admins/manage-quizzes" />
+              </MenuItem>
+
               <MenuItem>Quản lý câu hỏi</MenuItem>
             </SubMenu>
           </Menu>
