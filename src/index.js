@@ -7,6 +7,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "nprogress/nprogress.css";
 import "react-perfect-scrollbar/dist/css/styles.css";
+import "react-awesome-lightbox/build/style.css";
 
 import "./index.scss";
 import Layout from "./Layout/Layout";

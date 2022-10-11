@@ -14,7 +14,7 @@ import {
   SubMenu,
 } from "react-pro-sidebar";
 
-import sidebarBg from "../../assets/bg2.jpg";
+import sidebarBg from "../../assets/bg.jpg";
 import "./SideBar.scss";
 
 const SideBar = props => {
@@ -66,8 +66,10 @@ const SideBar = props => {
                 Quản lý bài quiz
                 <Link to="/admins/manage-quizzes" />
               </MenuItem>
-
-              <MenuItem>Quản lý câu hỏi</MenuItem>
+              <MenuItem>
+                Quản lý câu hỏi
+                <Link to="/admins/manage-questions" />
+              </MenuItem>
             </SubMenu>
           </Menu>
         </SidebarContent>
