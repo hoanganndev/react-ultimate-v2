@@ -6,6 +6,8 @@ import Accordion from "react-bootstrap/Accordion";
 import "./ManageQuiz.scss";
 import { postCreateNewQuiz } from "../../../../services/apiService";
 import TableQuiz from "./TableQuiz";
+import QuizQA from "./QuizQA";
+import AssignQuiz from "./AssignQuiz";
 
 const ManageQuiz = () => {
   const options = [
@@ -41,7 +43,7 @@ const ManageQuiz = () => {
 
   return (
     <div className="quiz-container quiz">
-      <Accordion defaultActiveKey="0">
+      <Accordion>
         <Accordion.Item eventKey="0">
           <Accordion.Header>Manage quizzes</Accordion.Header>
           <Accordion.Body>
@@ -96,13 +98,26 @@ const ManageQuiz = () => {
                 </div>
               </fieldset>
             </div>
+            <div className="quiz__listDetail container">
+              <TableQuiz />
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+        {/* Quiz question and answer */}
+        <Accordion.Item eventKey="1">
+          <Accordion.Header>Update Q&A Quizzes</Accordion.Header>
+          <Accordion.Body>
+            <QuizQA />
+          </Accordion.Body>
+        </Accordion.Item>
+        {/* Assign quiz to user  */}
+        <Accordion.Item eventKey="2">
+          <Accordion.Header>Assign to Users</Accordion.Header>
+          <Accordion.Body>
+            <AssignQuiz />
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
-
-      <div className="quiz__listDetail container">
-        <TableQuiz />
-      </div>
     </div>
   );
 };

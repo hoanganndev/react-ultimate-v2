@@ -3,6 +3,7 @@ import axiosClient from "../utils/axiosClient";
 const getAllUsers = () => {
   return axiosClient.get("api/v1/participant/all");
 };
+
 const getUsersWithPaginate = (page, limit) => {
   return axiosClient.get(`api/v1/participant?page=${page}&limit=${limit}`);
 };
@@ -63,6 +64,30 @@ const getAllQuizForAdmin = () => {
   return axiosClient.get(`/api/v1/quiz/all`);
 };
 
+const postCreateNewQuestionForQuiz = (quiz_id, description, questionImage) => {
+  const data = new FormData();
+  data.append("quiz_id", quiz_id);
+  data.append("description", description);
+  data.append("questionImage", questionImage);
+  return axiosClient.post("api/v1/question", data);
+};
+
+const postCreateNewAnswersForQuestion = (description, correct_answer, question_id) => {
+  return axiosClient.post("api/v1/answer", { description, correct_answer, question_id });
+};
+
+const postAssignQuiz = (quizId, userId) => {
+  return axiosClient.post("api/v1/quiz-assign-to-user", { quizId, userId });
+};
+
+const getQuizWithQA = quizId => {
+  return axiosClient.get(`api/v1/quiz-with-qa/${quizId}`);
+};
+
+const postUpsertQA = data => {
+  return axiosClient.post(`api/v1/quiz-upsert-qa`, { ...data });
+};
+
 export {
   postCreateNewUser,
   getAllUsers,
@@ -76,4 +101,9 @@ export {
   postSubmitQuiz,
   postCreateNewQuiz,
   getAllQuizForAdmin,
+  postCreateNewQuestionForQuiz,
+  postCreateNewAnswersForQuestion,
+  postAssignQuiz,
+  getQuizWithQA,
+  postUpsertQA,
 };
